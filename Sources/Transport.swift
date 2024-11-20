@@ -134,9 +134,9 @@ public final class Transport {
                 // (usually means that this function was called by resumeReading)
                 return
             }
-            fatalError("Failed to read, errno=\(errno), message=\(lastErrorDescription())")
+            return
         } catch {
-            fatalError("Failed to read")
+            return
         }
         guard data.count > 0 else {
             closedByPeer()
