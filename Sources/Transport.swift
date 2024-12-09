@@ -128,13 +128,6 @@ public final class Transport {
         var data: Data!
         do {
             data = try socket.recv(size: Transport.recvChunkSize)
-        } catch OSError.ioError(let number, _) {
-            guard number != EAGAIN else {
-                // if it's EAGAIN, it means no data to be read for now, just return
-                // (usually means that this function was called by resumeReading)
-                return
-            }
-            return
         } catch {
             return
         }
